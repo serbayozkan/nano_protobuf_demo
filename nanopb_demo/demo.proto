@@ -1,0 +1,19 @@
+// A very simple protocol definition, consisting of only
+// one message.
+
+syntax = "proto2";
+
+import 	"nanopb.proto";
+
+message sensor
+{
+	required float temperature = 1;
+	required int32 humidity = 2;
+}
+
+message device
+{
+	required sensor indoor_sensor = 1;
+	required sensor outdoor_sensor = 2;
+	required string payload = 3 [(nanopb).max_size = 64];
+}
